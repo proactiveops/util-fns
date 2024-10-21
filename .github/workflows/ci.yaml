@@ -1,0 +1,93 @@
+name: "CI"
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches:
+      - main
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        id: setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+
+      - name: Install dependencies
+        id: pip
+        run: pip install '.[dev]'
+
+      - name: Lint
+        id: lint
+        run: ruff check
+
+      - name: Format
+        id: format
+        run: ruff format --check
+
+      - name: Test
+        id: test
+        run: coverage run -m pytest
+        
+      - name: Coverage Report
+        id: coverage
+        run: coverage report
+
+
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Setup TFLint
+        id: setup-tflint
+        uses: terraform-linters/setup-tflint@19a52fbac37dacb22a09518e4ef6ee234f2d4987 # v4.0.0
+
+      - name: Init TFLint
+        id: init-tflint
+        run: tflint --init
+        env:
+          # Needed to avoid getting rate limited by GitHub API
+          GITHUB_TOKEN: ${{ github.token }}
+          
+      - name: TFLint
+        id: tflint
+        run: tflint
+
+      - name: TFSec
+        id: tfsec
+        uses: aquasecurity/tfsec-action@b466648d6e39e7c75324f25d83891162a721f2d6 # v1.0.3
+        with:
+          # Avoiding rate limit again
+          github_token: ${{ github.token }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3.1.2
+        id: setup-terraform
+        with:
+          terraform_version: 1.9.8
+
+      - name: Terraform init
+        id: init
+        run: terraform init
+
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check
+
+      - name: Terraform validate
+        id: validate
+        run: terraform validate
+
+      - name: Terraform Docs
+        id: terraform-docs
+        uses: terraform-docs/gh-actions@aeae0038ed47a547e0c0fca5c059d3335f48fb25 # v1.3.0

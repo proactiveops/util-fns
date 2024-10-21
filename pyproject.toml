@@ -1,0 +1,35 @@
+[project]
+name = "util-fns"
+authors = [
+    {name = "Dave Hall", email = "skwashd@gmail.com"},
+]
+description = "Utility Lambda functions designed to be called from AWS Step Functions."
+
+dependencies = [
+]
+
+dynamic = ["version"]
+
+[project.optional-dependencies]
+dev = [
+  "aws-lambda-powertools==3.1.0",
+  "pytest==8.3.3",
+  "coverage==7.6.3",
+  "pytest-mock==3.14.0",
+  "ruff==0.7.0",
+]
+
+[tool.setuptools-git-versioning]
+enabled = true
+
+[tool.ruff.lint]
+# Rules listed at https://github.com/charliermarsh/ruff#supported-rules
+select = ["B", "D", "E", "F", "G", "I", "N", "S", "W", "ANN" ,"BLE", "C4", "C90", "DTZ", "ERA", "PLW", "PT", "RET", "RUF", "SIM", "TRY", "UP"]
+ignore = ["D203", "D211", "D212", "E501", "F403", "F405", "ANN101"]
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = ["B", "D", "E", "F", "G", "I", "N", "S", "W", "ANN" ,"BLE", "C4", "C90", "DTZ", "ERA", "PLW", "PT", "RET", "RUF", "SIM", "TRY", "UP"]
+unfixable = []
+
+[tool.ruff.lint.per-file-ignores]
+"test_*" = ["S101", "S108"]
