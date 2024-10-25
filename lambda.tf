@@ -37,13 +37,17 @@ resource "aws_lambda_function" "lambda" {
   ]
 
   tags = var.tags
+
+  depends_on = [
+    aws_iam_role_policy_attachment.lambda,
+  ]
 }
 
 #tfsec:ignore:aws-cloudwatch-log-group-customer-key CWL-SSE is adequate the data being stored.
 resource "aws_cloudwatch_log_group" "lambda" {
-  for_each = aws_lambda_function.lambda
+  for_each = local.functions
 
-  name = "/aws/lambda/${each.value.function_name}"
+  name = "/aws/lambda/${local.namespace}${each.key}"
 
   retention_in_days = 30
 
