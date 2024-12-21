@@ -10,6 +10,32 @@ These functions do not require network access. If you have a CloudWatch VPC endp
 
 The functions all run on ARM64 using the default terraform configuration.
 
+## IP to Object
+
+Wrapper for [Python's core `ipaddress` library](https://docs.python.org/3/library/ipaddress.html). The function supports both IPv4 and IPv6 addresses.
+
+Expected payload:
+
+```json
+{
+    "ip": "198.51.100.1"
+}
+```
+
+## Jira Match
+
+Search for Jira ticket references in a string. Returns unique matches as a list.
+
+Expected payload:
+
+```json
+{
+    "body": "ABC-123 This string contains 2 ticket references ZYX-987"
+}
+```
+
+## Deprecated Functions
+
 ## In List
 
 [Step Functions intrinsic functions provide some array operations](https://docs.aws.amazon.com/step-functions/latest/dg/intrinsic-functions.html#asl-intrsc-func-arrays). Unfortunately the `States.ArrayContains` function returns a boolean, rather than the position of the item in the list.
@@ -38,17 +64,7 @@ The function returns the starting position of the substring within the string. I
 }
 ```
 
-## IP to Object
-
-Wrapper for [Python's core `ipaddress` library](https://docs.python.org/3/library/ipaddress.html). The function supports both IPv4 and IPv6 addresses.
-
-Expected payload:
-
-```json
-{
-    "ip": "198.51.100.1"
-}
-```
+The following function are no longer being maintained. [Use JSONata in your Step Functions](https://aws.amazon.com/blogs/compute/simplifying-developer-experience-with-variables-and-jsonata-in-aws-step-functions/) instead.
 
 ## ISO Format to Timestamp
 
@@ -89,18 +105,6 @@ Expected payload:
 ```json
 {
     "timestamp": 499163580
-}
-```
-
-## Jira Match
-
-Search for Jira ticket references in a string. Returns unique matches as a list.
-
-Expected payload:
-
-```json
-{
-    "body": "ABC-123 This string contains 2 ticket references ZYX-987"
 }
 ```
 

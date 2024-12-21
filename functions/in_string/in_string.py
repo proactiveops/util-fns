@@ -21,6 +21,9 @@ def handler(event: dict[str, any], _: LambdaContext) -> dict[str, str]:
         JSON response.
 
     """
+    logger.warning(
+        "This function is deprecated and will be removed in the future. Use JSONata instead."
+    )
     string = event.get("string")
     string_type = type(string)
     if string_type is not str:

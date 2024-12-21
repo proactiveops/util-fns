@@ -21,6 +21,9 @@ def isoformat_to_timestamp(isoformat: str) -> int:
         int: Unix timestamp.
 
     """
+    logger.warning(
+        "This function is deprecated and will be removed in the future. Use JSONata instead."
+    )
     if not isoformat:
         isoformat = datetime.datetime.now(tz=datetime.timezone.utc).isoformat()
 

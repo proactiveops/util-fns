@@ -21,6 +21,9 @@ def handler(event: dict[str, any], _: LambdaContext) -> dict[str, str]:
         JSON response.
 
     """
+    logger.warning(
+        "This function is deprecated and will be removed in the future. Use JSONata instead."
+    )
     values = event.get("values")
     # JSON converts empty objects to empty lists, so we need to check for this.
     if type(values) is list and len(values) == 0:
