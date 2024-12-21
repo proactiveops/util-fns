@@ -34,7 +34,42 @@ Expected payload:
 }
 ```
 
-## Deprecated Functions
+## Redact Text
+
+Redact PII entities in a string identified by Amazon Comprehend. Comprehend only supports redaction an asynchronous batch operation. This function performs the redaction on a string in real time. Other sources of redaction rules can be used, so long as they use [the Amazon Comprehend PII Entities schema](https://docs.aws.amazon.com/comprehend/latest/dg/how-pii.html#how-pii-locate).
+
+Use the optional `ignored_entities` property with a list of entities to not redact.
+
+```json
+{
+  "text": "Hello Paul Santos. The latest statement for your credit card account 4111-1111-1111-1111 was mailed to 123 Any Street, Seattle, WA 98109.",
+  "entities": [
+    {
+      "Score": 0.9999669790267944,
+      "Type": "NAME",
+      "BeginOffset": 6,
+      "EndOffset": 18
+    },
+    {
+      "Score": 0.8905550241470337,
+      "Type": "CREDIT_DEBIT_NUMBER",
+      "BeginOffset": 69,
+      "EndOffset": 88
+    },
+    {
+      "Score": 0.9999889731407166,
+      "Type": "ADDRESS",
+      "BeginOffset": 103,
+      "EndOffset": 138
+    }
+  ],
+  "ignored_entities": [
+    "NAME"
+  ]
+}
+```
+
+# Deprecated Functions
 
 ## In List
 

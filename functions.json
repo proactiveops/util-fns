@@ -1,10 +1,6 @@
 [
-    "in_list",
-    "in_string",
     "ip_to_object",
-    "isoformat_to_timestamp",
     "jira_match",
-    "lookup_key",
-    "timestamp_to_isoformat"
+    "redact"
 ]
   
