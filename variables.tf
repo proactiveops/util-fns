@@ -4,6 +4,16 @@ variable "cloudwatch_vpce_security_group" {
   default     = ""
 }
 
+variable "enabled_functions" {
+  type        = list(string)
+  description = "A list of functions to enable"
+  default = [
+    "ip_to_object",
+    "jira_match",
+    "redact"
+  ]
+}
+
 variable "iam_role_permission_boundary" {
   type        = string
   description = "The ARN of the IAM policy to use as a permission boundary for the IAM role"

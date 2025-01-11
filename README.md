@@ -10,6 +10,25 @@ These functions do not require network access. If you have a CloudWatch VPC endp
 
 The functions all run on ARM64 using the default terraform configuration.
 
+## Example
+
+```hcl2
+module "util_fns" {
+  source = "git@github.com:proactiveops/util-fns.git?ref=main"
+
+  cloudwatch_vpce_security_group = "sg-4badf00d"
+
+  subnets = "subnet-d34db33f"
+  tags    = var.tags
+
+  enabled_functions = [
+    "ip_to_object",
+    "jira_match",
+    "redact"
+  ]
+}
+```
+
 ## IP to Object
 
 Wrapper for [Python's core `ipaddress` library](https://docs.python.org/3/library/ipaddress.html). The function supports both IPv4 and IPv6 addresses.

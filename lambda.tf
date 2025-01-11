@@ -1,5 +1,5 @@
 locals {
-  functions = toset(jsondecode(file("${path.module}/functions.json")))
+  functions = toset(var.enabled_functions)
 }
 
 data "archive_file" "this" {
