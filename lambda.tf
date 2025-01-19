@@ -32,6 +32,11 @@ resource "aws_lambda_function" "lambda" {
     security_group_ids = [aws_security_group.this.id]
   }
 
+  tracing_config {
+    #tfsec:ignore:aws-lambda-enable-tracing Let the caller decide if they want to enable tracing
+    mode = "PassThrough"
+  }
+
   layers = [
     "arn:aws:lambda:${data.aws_region.current.name}:017000801446:layer:AWSLambdaPowertoolsPythonV3-python312-arm64:${var.powertools_version}"
   ]
