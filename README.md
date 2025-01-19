@@ -207,10 +207,11 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_cloudwatch_vpce_security_group"></a> [cloudwatch\_vpce\_security\_group](#input\_cloudwatch\_vpce\_security\_group) | ID of the security group containing the VPC endpoint for CloudWatch Logs | `string` | `""` | no |
+| <a name="input_enabled_functions"></a> [enabled\_functions](#input\_enabled\_functions) | A list of functions to enable | `list(string)` | <pre>[<br/>  "ip_to_object",<br/>  "jira_match",<br/>  "redact"<br/>]</pre> | no |
 | <a name="input_iam_role_permission_boundary"></a> [iam\_role\_permission\_boundary](#input\_iam\_role\_permission\_boundary) | The ARN of the IAM policy to use as a permission boundary for the IAM role | `string` | `null` | no |
 | <a name="input_iam_role_prefix"></a> [iam\_role\_prefix](#input\_iam\_role\_prefix) | A prefix to use for the IAM role name | `string` | `""` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | The namespace prefix to use for all resources | `string` | `"util-fns"` | no |
-| <a name="input_powertools_version"></a> [powertools\_version](#input\_powertools\_version) | The version of the AWS Lambda Powertools Lambda layer | `string` | `"2"` | no |
+| <a name="input_powertools_version"></a> [powertools\_version](#input\_powertools\_version) | The version of the AWS Lambda Powertools Lambda layer | `string` | `"5"` | no |
 | <a name="input_subnets"></a> [subnets](#input\_subnets) | A list of subnet IDs to use for the VPC | `list(string)` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to apply to all resources | `map(string)` | `{}` | no |
 
