@@ -8,9 +8,9 @@ import pytest
 
 def test_handler(lambda_context: isoformat_to_timestamp.LambdaContext) -> None:
     """Test lambda handler."""
-    start = int(datetime.datetime.now(tz=datetime.timezone.utc).timestamp())
+    start = int(datetime.datetime.now(tz=datetime.UTC).timestamp())
     response = isoformat_to_timestamp.handler({}, lambda_context)
-    end = int(datetime.datetime.now(tz=datetime.timezone.utc).timestamp()) + 1
+    end = int(datetime.datetime.now(tz=datetime.UTC).timestamp()) + 1
 
     assert response["timestamp"] >= start
     assert response["timestamp"] <= end
@@ -20,7 +20,7 @@ def test_handler_with_timestamp(
     lambda_context: isoformat_to_timestamp.LambdaContext,
 ) -> None:
     """Test lambda handler with timestamp."""
-    isoformat = datetime.datetime.now(tz=datetime.timezone.utc)
+    isoformat = datetime.datetime.now(tz=datetime.UTC)
 
     event = {"isoformat": isoformat.isoformat()}
     response = isoformat_to_timestamp.handler(event, lambda_context)

@@ -25,7 +25,7 @@ def isoformat_to_timestamp(isoformat: str) -> int:
         "This function is deprecated and will be removed in the future. Use JSONata instead."
     )
     if not isoformat:
-        isoformat = datetime.datetime.now(tz=datetime.timezone.utc).isoformat()
+        isoformat = datetime.datetime.now(tz=datetime.UTC).isoformat()
 
     timestamp = datetime.datetime.fromisoformat(isoformat)
 
