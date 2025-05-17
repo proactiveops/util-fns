@@ -53,4 +53,6 @@ variable "tags" {
 locals {
   namespace       = var.namespace != "" ? "${var.namespace}-" : ""
   iam_role_prefix = var.iam_role_prefix != "" ? "${var.iam_role_prefix}-${local.namespace}" : local.namespace
+
+  python_version = "python3.13"
 }

@@ -17,7 +17,7 @@ resource "aws_lambda_function" "lambda" {
   function_name = "${local.namespace}${each.key}"
   handler       = "${each.key}.handler"
 
-  runtime       = "python3.12"
+  runtime       = local.python_version
   timeout       = 5
   memory_size   = 128
   architectures = ["arm64"]
@@ -38,7 +38,7 @@ resource "aws_lambda_function" "lambda" {
   }
 
   layers = [
-    "arn:aws:lambda:${data.aws_region.current.name}:017000801446:layer:AWSLambdaPowertoolsPythonV3-python312-arm64:${var.powertools_version}"
+    "arn:aws:lambda:${data.aws_region.current.name}:017000801446:layer:AWSLambdaPowertoolsPythonV3-${replace(local.python_version, ".", "")}-arm64:${var.powertools_version}"
   ]
 
   tags = var.tags
