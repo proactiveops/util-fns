@@ -1,7 +1,7 @@
 variable "cloudwatch_vpce_security_group" {
   type        = string
   description = "ID of the security group containing the VPC endpoint for CloudWatch Logs"
-  default     = ""
+  default     = null
 }
 
 variable "enabled_functions" {
