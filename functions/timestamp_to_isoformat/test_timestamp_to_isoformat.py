@@ -9,9 +9,9 @@ from aws_lambda_powertools.utilities.typing import LambdaContext
 
 def test_handler(lambda_context: LambdaContext) -> None:
     """Test lambda handler."""
-    start = int(datetime.datetime.now(tz=datetime.timezone.utc).timestamp())
+    start = int(datetime.datetime.now(tz=datetime.UTC).timestamp())
     response = timestamp_to_isoformat.handler({}, lambda_context)
-    end = int(datetime.datetime.now(tz=datetime.timezone.utc).timestamp()) + 1
+    end = int(datetime.datetime.now(tz=datetime.UTC).timestamp()) + 1
 
     as_timestamp = datetime.datetime.fromisoformat(response["isoformat"]).timestamp()
 

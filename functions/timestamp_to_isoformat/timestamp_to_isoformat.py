@@ -25,13 +25,11 @@ def timestamp_to_isoformat(timestamp: any) -> str:
         "This function is deprecated and will be removed in the future. Use JSONata instead."
     )
     if not timestamp:
-        timestamp = datetime.datetime.now(tz=datetime.timezone.utc).timestamp()
+        timestamp = datetime.datetime.now(tz=datetime.UTC).timestamp()
 
     timestamp = float(timestamp)
 
-    return datetime.datetime.fromtimestamp(
-        timestamp, tz=datetime.timezone.utc
-    ).isoformat()
+    return datetime.datetime.fromtimestamp(timestamp, tz=datetime.UTC).isoformat()
 
 
 @logger.inject_lambda_context(log_event=True)

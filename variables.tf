@@ -1,7 +1,7 @@
 variable "cloudwatch_vpce_security_group" {
   type        = string
   description = "ID of the security group containing the VPC endpoint for CloudWatch Logs"
-  default     = ""
+  default     = null
 }
 
 variable "enabled_functions" {
@@ -35,7 +35,7 @@ variable "namespace" {
 variable "powertools_version" {
   type        = string
   description = "The version of the AWS Lambda Powertools Lambda layer"
-  default     = "5"
+  default     = "7"
 }
 
 variable "subnets" {
@@ -53,4 +53,6 @@ variable "tags" {
 locals {
   namespace       = var.namespace != "" ? "${var.namespace}-" : ""
   iam_role_prefix = var.iam_role_prefix != "" ? "${var.iam_role_prefix}-${local.namespace}" : local.namespace
+
+  python_version = "python3.13"
 }

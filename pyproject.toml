@@ -8,15 +8,17 @@ description = "Utility Lambda functions designed to be called from AWS Step Func
 dependencies = [
 ]
 
+requires-python = ">=3.13,<3.14" # Match lambda runtime
+
 dynamic = ["version"]
 
 [project.optional-dependencies]
 dev = [
-  "aws-lambda-powertools==3.10.0",
+  "aws-lambda-powertools==3.12.0",
   "pytest==8.3.5",
   "coverage==7.8.0",
   "pytest-mock==3.14.0",
-  "ruff==0.11.6",
+  "ruff==0.11.10",
 ]
 
 [tool.setuptools-git-versioning]
@@ -25,7 +27,7 @@ enabled = true
 [tool.ruff.lint]
 # Rules listed at https://github.com/charliermarsh/ruff#supported-rules
 select = ["B", "D", "E", "F", "G", "I", "N", "S", "W", "ANN" ,"BLE", "C4", "C90", "DTZ", "ERA", "PLW", "PT", "RET", "RUF", "SIM", "TRY", "UP"]
-ignore = ["D203", "D211", "D212", "E501", "F403", "F405", "ANN101"]
+ignore = ["D203", "D211", "D212", "E501", "F403", "F405"]
 
 # Allow autofix for all enabled rules (when `--fix`) is provided.
 fixable = ["B", "D", "E", "F", "G", "I", "N", "S", "W", "ANN" ,"BLE", "C4", "C90", "DTZ", "ERA", "PLW", "PT", "RET", "RUF", "SIM", "TRY", "UP"]
