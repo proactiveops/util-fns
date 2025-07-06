@@ -21,6 +21,7 @@ resource "aws_security_group" "this" {
   }
 }
 
+#trivy:ignore:AVD-AWS-0104 Egress only open if not using VPC endpoints
 resource "aws_vpc_security_group_egress_rule" "open" {
   count = var.cloudwatch_vpce_security_group == null ? 1 : 0
 

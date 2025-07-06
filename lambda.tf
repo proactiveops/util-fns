@@ -33,7 +33,7 @@ resource "aws_lambda_function" "lambda" {
   }
 
   tracing_config {
-    #tfsec:ignore:aws-lambda-enable-tracing Let the caller decide if they want to enable tracing
+    #trivy:ignore:AVD-AWS-0066 Let the caller decide if they want to enable tracing
     mode = "PassThrough"
   }
 
@@ -48,7 +48,7 @@ resource "aws_lambda_function" "lambda" {
   ]
 }
 
-#tfsec:ignore:aws-cloudwatch-log-group-customer-key CWL-SSE is adequate the data being stored.
+#trivy:ignore:AVD-AWS-0017 CWL-SSE is adequate the data being stored.
 resource "aws_cloudwatch_log_group" "lambda" {
   for_each = local.functions
 
