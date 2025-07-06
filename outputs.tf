@@ -1,5 +1,19 @@
+output "lambda_function_arns" {
+  description = "A map of the Lambda function ARNs indexed by their short name"
+  value = {
+    for key, value in local.functions : key => aws_lambda_function.lambda[key].arn
+  }
+}
+
+output "lambda_function_names" {
+  description = "A map of the Lambda function names indexed by their short name"
+  value = {
+    for key, value in local.functions : key => aws_lambda_function.lambda[key].function_name
+  }
+}
+
 output "lambda_functions" {
-  description = "A map of the Lambda function names to their ARNs"
+  description = "Deprecated. Use `lambda_function_arns` instead."
   value = {
     for key, value in local.functions : key => aws_lambda_function.lambda[key].arn
   }
