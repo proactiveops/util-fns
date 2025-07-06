@@ -35,7 +35,7 @@ jobs:
       - name: Test
         id: test
         run: coverage run -m pytest
-        
+
       - name: Coverage Report
         id: coverage
         run: coverage report
@@ -58,17 +58,18 @@ jobs:
         env:
           # Needed to avoid getting rate limited by GitHub API
           GITHUB_TOKEN: ${{ github.token }}
-          
+
       - name: TFLint
         id: tflint
         run: tflint
 
-      - name: TFSec
-        id: tfsec
-        uses: aquasecurity/tfsec-action@b466648d6e39e7c75324f25d83891162a721f2d6 # v1.0.3
+      - name: Run Trivy
+        id: trivy
+        uses: aquasecurity/trivy-action@0.32.0
         with:
-          # Avoiding rate limit again
-          github_token: ${{ github.token }}
+          format: 'table'
+          scan-type: 'fs'
+          scanners: 'config,secret,vuln'
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3.1.2
