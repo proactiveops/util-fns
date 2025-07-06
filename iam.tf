@@ -10,11 +10,23 @@ data "aws_iam_policy" "permission_boundary" {
 
 data "aws_iam_policy_document" "lambda_assume" {
   statement {
-    actions = ["sts:AssumeRole"]
-    effect  = "Allow"
+    actions = [
+      "sts:AssumeRole"
+    ]
+
     principals {
-      type        = "Service"
-      identifiers = ["lambda.amazonaws.com"]
+      type = "Service"
+      identifiers = [
+        "lambda.amazonaws.com"
+      ]
+    }
+
+    condition {
+      test     = "StringEquals"
+      variable = "aws:SourceAccount"
+      values = [
+        data.aws_caller_identity.current.account_id
+      ]
     }
   }
 }
@@ -27,23 +39,18 @@ data "aws_iam_policy_document" "lambda" {
       "logs:PutLogEvents"
     ]
 
-    effect = "Allow"
-    #tfsec:ignore:aws-iam-no-policy-wildcards We can't list every possible log group
     resources = [
       for group in aws_cloudwatch_log_group.lambda : "${group.arn}:log-stream:*"
     ]
   }
 
   statement {
-    effect = "Allow"
-
     actions = [
       "ec2:CreateNetworkInterface",
       "ec2:DescribeNetworkInterfaces",
       "ec2:DeleteNetworkInterface",
     ]
 
-    #tfsec:ignore:aws-iam-no-policy-wildcards These network operations aren't resource scoped
     resources = ["*"]
   }
 }
