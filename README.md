@@ -175,8 +175,8 @@ Expected payload:
 
 | Name | Version |
 |------|---------|
-| <a name="provider_archive"></a> [archive](#provider\_archive) | 2.6.0 |
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.70.0 |
+| <a name="provider_archive"></a> [archive](#provider\_archive) | 2.7.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.98.0 |
 
 ## Modules
 
@@ -206,12 +206,12 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_cloudwatch_vpce_security_group"></a> [cloudwatch\_vpce\_security\_group](#input\_cloudwatch\_vpce\_security\_group) | ID of the security group containing the VPC endpoint for CloudWatch Logs | `string` | `""` | no |
+| <a name="input_cloudwatch_vpce_security_group"></a> [cloudwatch\_vpce\_security\_group](#input\_cloudwatch\_vpce\_security\_group) | ID of the security group containing the VPC endpoint for CloudWatch Logs | `string` | `null` | no |
 | <a name="input_enabled_functions"></a> [enabled\_functions](#input\_enabled\_functions) | A list of functions to enable | `list(string)` | <pre>[<br/>  "ip_to_object",<br/>  "jira_match",<br/>  "redact"<br/>]</pre> | no |
 | <a name="input_iam_role_permission_boundary"></a> [iam\_role\_permission\_boundary](#input\_iam\_role\_permission\_boundary) | The ARN of the IAM policy to use as a permission boundary for the IAM role | `string` | `null` | no |
 | <a name="input_iam_role_prefix"></a> [iam\_role\_prefix](#input\_iam\_role\_prefix) | A prefix to use for the IAM role name | `string` | `""` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | The namespace prefix to use for all resources | `string` | `"util-fns"` | no |
-| <a name="input_powertools_version"></a> [powertools\_version](#input\_powertools\_version) | The version of the AWS Lambda Powertools Lambda layer | `string` | `"5"` | no |
+| <a name="input_powertools_version"></a> [powertools\_version](#input\_powertools\_version) | The version of the AWS Lambda Powertools Lambda layer | `string` | `"18"` | no |
 | <a name="input_subnets"></a> [subnets](#input\_subnets) | A list of subnet IDs to use for the VPC | `list(string)` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to apply to all resources | `map(string)` | `{}` | no |
 
@@ -219,7 +219,9 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_lambda_functions"></a> [lambda\_functions](#output\_lambda\_functions) | A map of the Lambda function names to their ARNs |
+| <a name="output_lambda_function_arns"></a> [lambda\_function\_arns](#output\_lambda\_function\_arns) | A map of the Lambda function ARNs indexed by their short name |
+| <a name="output_lambda_function_names"></a> [lambda\_function\_names](#output\_lambda\_function\_names) | A map of the Lambda function names indexed by their short name |
+| <a name="output_lambda_functions"></a> [lambda\_functions](#output\_lambda\_functions) | Deprecated. Use `lambda_function_arns` instead. |
 | <a name="output_lambda_role"></a> [lambda\_role](#output\_lambda\_role) | The ARN of the IAM role used by the Lambda functions |
 | <a name="output_security_group"></a> [security\_group](#output\_security\_group) | The ID of the security group used by the Lambda functions |
 <!-- END_TF_DOCS -->
