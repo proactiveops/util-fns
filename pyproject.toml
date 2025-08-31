@@ -16,7 +16,7 @@ dynamic = ["version"]
 dev = [
   "aws-lambda-powertools==3.16.0",
   "pytest==8.4.1",
-  "coverage==7.9.2",
+  "coverage==7.10.6",
   "pytest-mock==3.14.1",
   "ruff==0.12.2",
 ]
