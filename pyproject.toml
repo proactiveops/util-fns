@@ -14,7 +14,7 @@ dynamic = ["version"]
 
 [project.optional-dependencies]
 dev = [
-  "aws-lambda-powertools==3.16.0",
+  "aws-lambda-powertools==3.21.0",
   "pytest==8.4.1",
   "coverage==7.9.2",
   "pytest-mock==3.14.1",
