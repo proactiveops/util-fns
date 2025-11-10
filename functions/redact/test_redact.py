@@ -1,5 +1,10 @@
 """Test cases for the redact function."""
 
+__author__ = "Dave Hall <me@davehall.com.au>"
+__copyright__ = "Copyright 2024, 2025, Skwashd Services Pty Ltd https://davehall.com.au"
+__license__ = "MIT"
+from typing import Any
+
 from aws_lambda_powertools.utilities.typing import LambdaContext
 from redact import handler, redact_text
 
@@ -37,7 +42,7 @@ def test_redact_overlapping_entities() -> None:
 def test_redact_no_entities() -> None:
     """Test redacting a string with no entities."""
     text = "Hello world"
-    entities = []
+    entities: list[Any] = []
     expected = "Hello world"
     assert redact_text(text, entities, []) == expected
 
@@ -116,8 +121,8 @@ def test_handler_with_no_entities(lambda_context: LambdaContext) -> None:
 
 def test_handler_with_missing_text(lambda_context: LambdaContext) -> None:
     """Test handler with missing text field."""
-    event = {"entities": []}
-    expected = {"clean_text": None}
+    event: dict[str, list[Any]] = {"entities": []}
+    expected = {"clean_text": ""}
     assert handler(event, lambda_context) == expected
 
 

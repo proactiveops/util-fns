@@ -35,7 +35,7 @@ variable "namespace" {
 variable "powertools_version" {
   type        = string
   description = "The version of the AWS Lambda Powertools Lambda layer"
-  default     = "18"
+  default     = "26"
 }
 
 variable "subnets" {

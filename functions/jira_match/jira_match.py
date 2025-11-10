@@ -1,5 +1,9 @@
 """Extract Jira ticket references from a string."""
 
+__author__ = "Dave Hall <me@davehall.com.au>"
+__copyright__ = "Copyright 2024, 2025, Skwashd Services Pty Ltd https://davehall.com.au"
+__license__ = "MIT"
+
 import re
 
 from aws_lambda_powertools import Logger
@@ -16,7 +20,7 @@ def find_tickets(body: str) -> list[str]:
 
 
 @logger.inject_lambda_context(log_event=True)
-def handler(event: dict[str:str], _: LambdaContext) -> dict[str, list[str]]:
+def handler(event: dict[str, str], _: LambdaContext) -> dict[str, list[str]]:
     """Check body property for Jira ticket references."""
     if "string" not in event:
         raise ValueError("Event body is missing")  # noqa: TRY003 We don't need a custom exception class for this

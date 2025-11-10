@@ -12,33 +12,45 @@ jobs:
     steps:
       - name: Check out code
         id: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        id: setup-python
-        uses: actions/setup-python@v5
+        id: python
+        uses: actions/setup-python@v6
         with:
-          python-version: 3.13
+          python-version-file: "pyproject.toml"
 
-      - name: Install dependencies
-        id: pip
-        run: pip install '.[dev]'
+      - name: Install uv
+        id: uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Create Venv
+        id: venv
+        run: uv venv
+
+      - name: Install Dependencies
+        id: deps
+        run: uv pip install -e ".[dev]"
 
       - name: Lint
         id: lint
-        run: ruff check
+        run: uv run ruff check --preview
 
       - name: Format
         id: format
-        run: ruff format --check
+        run: uv run ruff format --check --preview
+
+      - name: Type Check
+        id: type-check
+        run: uv run mypy functions/
 
       - name: Test
         id: test
-        run: coverage run -m pytest
+        run: uv run coverage run -m pytest
 
       - name: Coverage Report
         id: coverage
-        run: coverage report
+        run: uv run coverage report
 
 
   terraform:
@@ -46,11 +58,13 @@ jobs:
     steps:
       - name: Check out code
         id: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup TFLint
         id: setup-tflint
-        uses: terraform-linters/setup-tflint@19a52fbac37dacb22a09518e4ef6ee234f2d4987 # v4.0.0
+        uses: terraform-linters/setup-tflint@v6.2.1
+        with:
+          tflint_version: v0.59.1
 
       - name: Init TFLint
         id: init-tflint
@@ -65,17 +79,17 @@ jobs:
 
       - name: Run Trivy
         id: trivy
-        uses: aquasecurity/trivy-action@0.32.0
+        uses: aquasecurity/trivy-action@0.33.1
         with:
           format: 'table'
           scan-type: 'fs'
           scanners: 'config,secret,vuln'
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3.1.2
+        uses: hashicorp/setup-terraform@v3.1.2
         id: setup-terraform
         with:
-          terraform_version: 1.9.8
+          terraform_version: 1.13.5
 
       - name: Terraform init
         id: init
@@ -91,4 +105,4 @@ jobs:
 
       - name: Terraform Docs
         id: terraform-docs
-        uses: terraform-docs/gh-actions@aeae0038ed47a547e0c0fca5c059d3335f48fb25 # v1.3.0
+        uses: terraform-docs/gh-actions@v1.4.1

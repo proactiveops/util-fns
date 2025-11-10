@@ -1,5 +1,9 @@
 """Convert a unix timestamp to an ISO 8601 datetime string."""
 
+__author__ = "Dave Hall <me@davehall.com.au>"
+__copyright__ = "Copyright 2024, 2025, Skwashd Services Pty Ltd https://davehall.com.au"
+__license__ = "MIT"
+
 import datetime
 
 from aws_lambda_powertools import Logger
@@ -8,7 +12,7 @@ from aws_lambda_powertools.utilities.typing import LambdaContext
 logger = Logger()
 
 
-def timestamp_to_isoformat(timestamp: any) -> str:
+def timestamp_to_isoformat(timestamp: str | float | None) -> str:
     """
     Convert an ISO 8601 datetime string to a unix timestamp.
 
@@ -33,7 +37,7 @@ def timestamp_to_isoformat(timestamp: any) -> str:
 
 
 @logger.inject_lambda_context(log_event=True)
-def handler(event: dict, _: LambdaContext) -> dict[str:str]:
+def handler(event: dict, _: LambdaContext) -> dict[str, str]:
     """
     Return an ISO 8601 datetime string from a unix timestamp.
 

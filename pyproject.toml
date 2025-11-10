@@ -12,26 +12,36 @@ requires-python = ">=3.13,<3.14" # Match lambda runtime
 
 dynamic = ["version"]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
-  "aws-lambda-powertools==3.16.0",
-  "pytest==8.4.1",
-  "coverage==7.9.2",
-  "pytest-mock==3.14.1",
-  "ruff==0.12.2",
+  "aws-lambda-powertools==3.22.0",
+  "coverage==7.11.0",
+  "mypy==1.18.2",
+  "pytest-mock==3.15.1",
+  "pytest==8.4.2",
+  "ruff==0.14.2",
 ]
 
-[tool.setuptools-git-versioning]
-enabled = true
+[tool.mypy]
+mypy_path = "functions"
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+explicit_package_bases = true
+
+[tool.pytest.ini_options]
+pythonpath = ["functions"]
 
 [tool.ruff.lint]
 # Rules listed at https://github.com/charliermarsh/ruff#supported-rules
-select = ["B", "D", "E", "F", "G", "I", "N", "S", "W", "ANN" ,"BLE", "C4", "C90", "DTZ", "ERA", "PLW", "PT", "RET", "RUF", "SIM", "TRY", "UP"]
+select = ["B", "D", "E", "F", "G", "I", "N", "S", "W", "ANN" ,"BLE", "C4", "C90", "CPY", "DTZ", "ERA", "PLW", "PT", "RET", "RUF", "SIM", "TRY", "UP"]
 ignore = ["D203", "D211", "D212", "E501", "F403", "F405"]
 
 # Allow autofix for all enabled rules (when `--fix`) is provided.
-fixable = ["B", "D", "E", "F", "G", "I", "N", "S", "W", "ANN" ,"BLE", "C4", "C90", "DTZ", "ERA", "PLW", "PT", "RET", "RUF", "SIM", "TRY", "UP"]
+fixable = ["B", "D", "E", "F", "G", "I", "N", "S", "W", "ANN" ,"BLE", "C4", "C90", "CPY", "DTZ", "ERA", "PLW", "PT", "RET", "RUF", "SIM", "TRY", "UP"]
 unfixable = []
 
 [tool.ruff.lint.per-file-ignores]
 "test_*" = ["S101", "S108"]
+# Can't copyright trivial works.
+"__init__.py" = ["CPY001"]
