@@ -15,34 +15,42 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Set up Python
-        id: setup-python
-        uses: actions/setup-python@v5
+        id: python
+        uses: actions/setup-python@v6
         with:
-          python-version: 3.13
+          python-version-file: "pyproject.toml"
 
-      - name: Install dependencies
-        id: pip
-        run: pip install '.[dev]'
+      - name: Install uv
+        id: uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Create Venv
+        id: venv
+        run: uv venv
+
+      - name: Install Dependencies
+        id: deps
+        run: uv pip install -e ".[dev]"
 
       - name: Lint
         id: lint
-        run: ruff check
+        run: uv run ruff check --preview
 
       - name: Format
         id: format
-        run: ruff format --check
+        run: uv run ruff format --check --preview
 
       - name: Type Check
         id: type-check
-        run: mypy functions/
+        run: uv run mypy functions/
 
       - name: Test
         id: test
-        run: coverage run -m pytest
+        run: uv run coverage run -m pytest
 
       - name: Coverage Report
         id: coverage
-        run: coverage report
+        run: uv run coverage report
 
 
   terraform:
