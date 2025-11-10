@@ -90,6 +90,8 @@ Use the optional `ignored_entities` property with a list of entities to not reda
 
 # Deprecated Functions
 
+**These functions were moved to `deprecated-functions/`. They will be removed soon. [Use JSONata](https://docs.aws.amazon.com/step-functions/latest/dg/transforming-data.html) as a replacement for these functions in your Step Functions.**
+
 ## In List
 
 [Step Functions intrinsic functions provide some array operations](https://docs.aws.amazon.com/step-functions/latest/dg/intrinsic-functions.html#asl-intrsc-func-arrays). Unfortunately the `States.ArrayContains` function returns a boolean, rather than the position of the item in the list.
