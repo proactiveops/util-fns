@@ -30,7 +30,11 @@ warn_unused_configs = true
 explicit_package_bases = true
 
 [tool.pytest.ini_options]
+addopts = "--ignore=deprecated-functions/"
 pythonpath = ["functions"]
+
+[tool.ruff]
+exclude = ["deprecated-functions"]
 
 [tool.ruff.lint]
 # Rules listed at https://github.com/charliermarsh/ruff#supported-rules
