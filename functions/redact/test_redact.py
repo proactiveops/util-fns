@@ -1,5 +1,10 @@
 """Test cases for the redact function."""
 
+__author__ = "Dave Hall <me@davehall.com.au>"
+__copyright__ = "Copyright 2024, 2025, Skwashd Services Pty Ltd https://davehall.com.au"
+__license__ = "MIT"
+from typing import Any
+
 from aws_lambda_powertools.utilities.typing import LambdaContext
 from redact import handler, redact_text
 
