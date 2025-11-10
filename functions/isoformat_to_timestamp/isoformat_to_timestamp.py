@@ -12,7 +12,7 @@ from aws_lambda_powertools.utilities.typing import LambdaContext
 logger = Logger()
 
 
-def isoformat_to_timestamp(isoformat: str) -> int:
+def isoformat_to_timestamp(isoformat: str | None) -> int:
     """
     Convert an ISO 8601 datetime string to a unix timestamp.
 
@@ -31,13 +31,13 @@ def isoformat_to_timestamp(isoformat: str) -> int:
     if not isoformat:
         isoformat = datetime.datetime.now(tz=datetime.UTC).isoformat()
 
-    timestamp = datetime.datetime.fromisoformat(isoformat)
+    timestamp = datetime.datetime.fromisoformat(str(isoformat))
 
     return int(timestamp.timestamp())
 
 
 @logger.inject_lambda_context(log_event=True)
-def handler(event: dict, _: LambdaContext) -> dict[str:str]:
+def handler(event: dict, _: LambdaContext) -> dict[str, int]:
     """
     Return a unix timestamp from an ISO 8601 datetime string.
 

@@ -13,7 +13,7 @@ logger = Logger()
 
 
 @logger.inject_lambda_context(log_event=True)
-def handler(event: dict[str, any], _: LambdaContext) -> dict[str, str]:
+def handler(event: dict[str, Any], _: LambdaContext) -> dict[str, str | Any | None]:
     """
     Find a value in a dictionary by key.
 
@@ -30,7 +30,8 @@ def handler(event: dict[str, any], _: LambdaContext) -> dict[str, str]:
     logger.warning(
         "This function is deprecated and will be removed in the future. Use JSONata instead."
     )
-    values = event.get("values")
+
+    values: dict[str, Any] = event.get("values")  # type: ignore[assignment]
     # JSON converts empty objects to empty lists, so we need to check for this.
     if type(values) is list and len(values) == 0:
         logger.info("Recevied empty list, instead of dictionary.")

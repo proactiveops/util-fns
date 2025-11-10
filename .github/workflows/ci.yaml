@@ -32,6 +32,10 @@ jobs:
         id: format
         run: ruff format --check
 
+      - name: Type Check
+        id: type-check
+        run: mypy functions/
+
       - name: Test
         id: test
         run: coverage run -m pytest

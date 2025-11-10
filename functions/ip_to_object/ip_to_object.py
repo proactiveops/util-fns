@@ -66,7 +66,7 @@ class IPInfo:
 
 
 @logger.inject_lambda_context(log_event=True)
-def handler(event: dict[str:str], _: LambdaContext) -> dict[str:str]:
+def handler(event: dict[str, str], _: LambdaContext) -> dict[str, str]:
     """Convert IP address to an integer."""
     if "ip" not in event:
         logger.error("IP address missing from event body")

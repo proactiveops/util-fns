@@ -13,7 +13,7 @@ logger = Logger()
 
 
 @logger.inject_lambda_context(log_event=True)
-def handler(event: dict[str, any], _: LambdaContext) -> dict[str, str]:
+def handler(event: dict[str, Any], _: LambdaContext) -> dict[str, int]:
     """
     Find a value in a list.
 
