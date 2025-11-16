@@ -4,15 +4,15 @@ requires-python = "==3.13.*"
 
 [[package]]
 name = "aws-lambda-powertools"
-version = "3.22.1"
+version = "3.23.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "jmespath" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/fc/b4/c56b04936006f85b7cd90ffe035904cb19f1ee0e833ff3b9fb10f9efcc55/aws_lambda_powertools-3.22.1.tar.gz", hash = "sha256:a9c45b028f210a6b46db42624afbb2aa916b98fa4fcd402765c69d182521891c", size = 702800, upload-time = "2025-11-05T10:01:17.397Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/38/24/78f320a310d98df8c831e15c5f04fec20ba4958253deb165ab2d10d3392b/aws_lambda_powertools-3.23.0.tar.gz", hash = "sha256:30ab45960989dd75a4d84de4f156509458f8782038d532eee2f815488d7cc929", size = 702835, upload-time = "2025-11-13T16:44:23.659Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/41/bb/e0b2f231092c7d34560e91881e3e71f485e0dbcc8d2b9191c78fee8ab6a0/aws_lambda_powertools-3.22.1-py3-none-any.whl", hash = "sha256:ab144f1dc3412314e711f9feb1aa16da6b47b40c75b7fe2c22c6b3d4ad798d6e", size = 848229, upload-time = "2025-11-05T10:01:14.985Z" },
+    { url = "https://files.pythonhosted.org/packages/70/48/f59597b0acbe3bcd829ae5b13b49a29039c5b2a5a6771f765ad3f3f576a3/aws_lambda_powertools-3.23.0-py3-none-any.whl", hash = "sha256:f3d16f1b0304c686cc956ecf0f6f8907d21992a4a5070e2388c21571d8c84cc2", size = 848256, upload-time = "2025-11-13T16:44:21.459Z" },
 ]
 
 [[package]]
@@ -223,7 +223,7 @@ dev = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "aws-lambda-powertools", specifier = "==3.22.1" },
+    { name = "aws-lambda-powertools", specifier = "==3.23.0" },
     { name = "coverage", specifier = "==7.11.3" },
     { name = "mypy", specifier = "==1.18.2" },
     { name = "pytest", specifier = "==9.0.1" },
