@@ -24,13 +24,9 @@ jobs:
         id: uv
         uses: astral-sh/setup-uv@v7
 
-      - name: Create Venv
-        id: venv
-        run: uv venv
-
       - name: Install Dependencies
         id: deps
-        run: uv pip install -e ".[dev]"
+        run: uv sync --dev
 
       - name: Lint
         id: lint
@@ -42,7 +38,7 @@ jobs:
 
       - name: Type Check
         id: type-check
-        run: uv run mypy functions/
+        run: uv run ty check functions/
 
       - name: Test
         id: test

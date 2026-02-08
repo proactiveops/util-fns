@@ -6,7 +6,8 @@ __license__ = "MIT"
 from typing import Any
 
 from aws_lambda_powertools.utilities.typing import LambdaContext
-from redact import handler, redact_text
+
+from functions.redact import handler, redact_text
 
 
 def test_redact_single_entity() -> None:
