@@ -4,9 +4,10 @@ __author__ = "Dave Hall <me@davehall.com.au>"
 __copyright__ = "Copyright 2024, 2025, Skwashd Services Pty Ltd https://davehall.com.au"
 __license__ = "MIT"
 
-import ip_to_object
 import pytest
 from aws_lambda_powertools.utilities.typing import LambdaContext
+
+import functions.ip_to_object.ip_to_object as ip_to_object
 
 
 @pytest.mark.parametrize(

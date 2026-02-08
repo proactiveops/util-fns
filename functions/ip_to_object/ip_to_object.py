@@ -1,7 +1,9 @@
 """Convert IP address to an object."""
 
 __author__ = "Dave Hall <me@davehall.com.au>"
-__copyright__ = "Copyright 2024, 2025, Skwashd Services Pty Ltd https://davehall.com.au"
+__copyright__ = (
+    "Copyright 2024 - 2026, Skwashd Services Pty Ltd https://davehall.com.au"
+)
 __license__ = "MIT"
 
 import ipaddress
@@ -52,14 +54,14 @@ class IPInfo:
             "is_link_local": self.ipaddress.is_link_local,
         }
 
-        if self.ipaddress.version == 4:
+        if type(self.ipaddress) is ipaddress.IPv4Address:
             return common
 
         ipv6_info = {
-            "ipv4_mapped": self.ipaddress.ipv4_mapped,
-            "scope_id": self.ipaddress.scope_id,
-            "sixtofour": self.ipaddress.sixtofour,
-            "teredo": self.ipaddress.teredo,
+            "ipv4_mapped": self.ipaddress.ipv4_mapped,  # type: ignore[possibly-missing-attribute] We already did the type check. We're only here if it is IPv6.
+            "scope_id": self.ipaddress.scope_id,  # type: ignore[possibly-missing-attribute] ditto
+            "sixtofour": self.ipaddress.sixtofour,  # type: ignore[possibly-missing-attribute] ditto
+            "teredo": self.ipaddress.teredo,  # type: ignore[possibly-missing-attribute] ditto
         }
 
         return {**common, **ipv6_info}

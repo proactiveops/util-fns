@@ -6,6 +6,7 @@ authors = [
 description = "Utility Lambda functions designed to be called from AWS Step Functions."
 
 dependencies = [
+  # We only use the python stdlib
 ]
 
 requires-python = ">=3.13,<3.14" # Match lambda runtime
@@ -16,10 +17,10 @@ dynamic = ["version"]
 dev = [
   "aws-lambda-powertools==3.22.1",
   "coverage==7.11.3",
-  "mypy==1.18.2",
   "pytest-mock==3.15.1",
   "pytest==9.0.1",
   "ruff==0.14.4",
+  "ty==0.0.15",
 ]
 
 [tool.mypy]
