@@ -82,7 +82,7 @@ jobs:
           scanners: 'config,secret,vuln'
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3.1.2
+        uses: hashicorp/setup-terraform@v4.0.0
         id: setup-terraform
         with:
           terraform_version: 1.13.5
