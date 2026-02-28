@@ -13,6 +13,14 @@ updates:
       interval: "daily"
       time: "03:00"
       timezone: "Australia/Melbourne"
+    groups:
+      pytest:
+        patterns:
+          - "pytest*"
+      qa:
+        patterns:
+          - "ruff*"
+          - "ty*"
 
   - package-ecosystem: "github-actions"
     directory: "/"
