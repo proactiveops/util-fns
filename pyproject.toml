@@ -19,8 +19,8 @@ dev = [
   "coverage==7.13.4",
   "pytest-mock==3.15.1",
   "pytest==9.0.2",
-  "ruff==0.15.4",
-  "ty==0.0.20",
+  "ruff==0.15.5",
+  "ty==0.0.21",
 ]
 
 [tool.mypy]
