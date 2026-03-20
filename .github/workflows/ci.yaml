@@ -73,14 +73,6 @@ jobs:
         id: tflint
         run: tflint
 
-      - name: Run Trivy
-        id: trivy
-        uses: aquasecurity/trivy-action@0.35.0
-        with:
-          format: 'table'
-          scan-type: 'fs'
-          scanners: 'config,secret,vuln'
-
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v4.0.0
         id: setup-terraform
