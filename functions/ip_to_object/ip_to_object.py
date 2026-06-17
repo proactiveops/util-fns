@@ -57,6 +57,9 @@ class IPInfo:
         if type(self.ipaddress) is ipaddress.IPv4Address:
             return common
 
+        # Needed cos ty is kinda braindead with mixed types sometimes.
+        self.ipaddress = ipaddress.IPv6Address(str(self.ipaddress))
+
         ipv6_info = {
             "ipv4_mapped": self.ipaddress.ipv4_mapped,  # type: ignore[possibly-missing-attribute] We already did the type check. We're only here if it is IPv6.
             "scope_id": self.ipaddress.scope_id,  # type: ignore[possibly-missing-attribute] ditto

@@ -50,3 +50,8 @@ unfixable = []
 "test_*" = ["S101", "S108"]
 # Can't copyright trivial works.
 "__init__.py" = ["CPY001"]
+
+[tool.ty.src]
+exclude = [
+    "deprecated-functions/**",
+]

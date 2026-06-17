@@ -73,7 +73,7 @@ def handler(event: dict, _: LambdaContext) -> dict[str, str]:
 
     """
     text = event.get("text")
-    entities: list[dict[str, str]] = event.get("entities")  # type: ignore[assignment]
+    entities: list[dict[str, str]] = event.get("entities", [])
     ignored_entities: list[str] = event.get("ignored_entities", [])
 
     response = {
