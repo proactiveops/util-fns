@@ -6,6 +6,8 @@ updates:
       interval: "daily"
       time: "02:00"
       timezone: "Australia/Melbourne"
+    cooldown:
+      default-days: 1
 
   - package-ecosystem: "uv"
     directory: "/"
@@ -21,6 +23,8 @@ updates:
         patterns:
           - "ruff*"
           - "ty*"
+    cooldown:
+      default-days: 1
 
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -29,3 +33,5 @@ updates:
       time: "04:00"
       timezone: "Australia/Sydney"
     open-pull-requests-limit: 5
+    cooldown:
+      default-days: 1
